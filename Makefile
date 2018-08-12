@@ -1,26 +1,26 @@
 CFLAGS=-g -Wall -fPIC -I/usr/local/include
 LIBS=-L/usr/local/lib -lNgramsLocations
 
-all: libOsmClassifier
+all: libClassifier
 
-test: testOsmClassifier
-	./testOsmClassifier test-map.ngt
+test: testClassifier
+	./testClassifier test-map.ngt
 
-testOsmClassifier: Makefile osmClassifier.h testOsmClassifier.c
-	gcc ${CFLAGS} -o testOsmClassifier testOsmClassifier.c ${LIBS} -lOsmClassifier
+testClassifier: Makefile classifier.h testClassifier.c
+	gcc ${CFLAGS} -o testClassifier testClassifier.c ${LIBS} -lClassifier
 
-libOsmClassifier: Makefile osmClassifier.o osmClassifier.h
-	gcc -shared -o libOsmClassifier.so.1.0 osmClassifier.o ${LIBS}
+libOsmClassifier: Makefile classifier.o classifier.h
+	gcc -shared -o libClassifier.so.1.0 classifier.o ${LIBS}
 
-osmClassifier.o: Makefile osmClassifier.h osmClassifier.c
-	gcc ${CFLAGS} -c osmClassifier.c -o osmClassifier.o
+osmClassifier.o: Makefile classifier.h classifier.c
+	gcc ${CFLAGS} -c classifier.c -o classifier.o
 
 install:
-	cp libOsmClassifier.so.1.0 /usr/local/lib
-	ln -sf /usr/local/lib/libOsmClassifier.so.1.0 /usr/local/lib/libOsmClassifier.so.1
-	ln -sf /usr/local/lib/libOsmClassifier.so.1.0 /usr/local/lib/libOsmClassifier.so
+	cp libClassifier.so.1.0 /usr/local/lib
+	ln -sf /usr/local/lib/libClassifier.so.1.0 /usr/local/lib/libClassifier.so.1
+	ln -sf /usr/local/lib/libClassifier.so.1.0 /usr/local/lib/libClassifier.so
 	ldconfig /usr/local/lib
-	cp osmClassifier.h /usr/local/include/osmClassifier.h
+	cp classifier.h /usr/local/include/classifier.h
 
 clean:
-	rm *.o; rm *.so*; rm core*; rm testOsmClassifier
+	rm *.o; rm *.so*; rm core*; rm testClassifier
