@@ -9,10 +9,10 @@ test: testClassifier
 testClassifier: Makefile classifier.h testClassifier.c
 	gcc ${CFLAGS} -o testClassifier testClassifier.c ${LIBS} -lClassifier
 
-libOsmClassifier: Makefile classifier.o classifier.h
+libClassifier: Makefile classifier.o classifier.h
 	gcc -shared -o libClassifier.so.1.0 classifier.o ${LIBS}
 
-osmClassifier.o: Makefile classifier.h classifier.c
+classifier.o: Makefile classifier.h classifier.c
 	gcc ${CFLAGS} -c classifier.c -o classifier.o
 
 install:
