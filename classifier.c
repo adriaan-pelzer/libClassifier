@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <ngramsLocations.h>
 
 ngramsLocations_t *osmClassifier_init ( const char *filename ) {
